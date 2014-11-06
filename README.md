@@ -3,7 +3,7 @@ oaths
 
 Don't make an oath if you can't fulfill it
 
-*Note: This is still an idea nad not usable.*
+**Note: This is still an idea and not usable.**
 
 See `test/index.js` and `test/json-fulfiller.js` for now.
 
