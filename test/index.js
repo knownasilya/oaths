@@ -9,7 +9,7 @@ var jsonFulfiller = new JSONFulfiller({
 });
 
 test('init', function (t) {
-  t.plan(3);
+  t.plan(4);
 
   var contracts = new App({
     user: {
@@ -44,5 +44,21 @@ test('init', function (t) {
       username: 'bob',
       email: 'bob@gmail.com'
     });
+
+    t.same(findById('users', 1, store), {
+      id: 1,
+      user_name: 'bob',
+      email: 'bob@gmail.com'
+    });
   });
 });
+
+function findById(table, id, store) {
+  var results = store[table].filter(function (item) {
+    return item.id === id;
+  });
+
+  if (results.length) {
+    return results[0];
+  }
+}
