@@ -1,7 +1,7 @@
 'use strict';
 
 var test = require('tape');
-var App = require('../');
+var Oath = require('../');
 var JSONFulfiller = require('./json-fulfiller');
 var store = { users: [] };
 var jsonFulfiller = new JSONFulfiller({
@@ -11,23 +11,21 @@ var jsonFulfiller = new JSONFulfiller({
 test('init', function (t) {
   t.plan(4);
 
-  var contracts = new App({
-    user: {
-      map: {
-        username: 'user_name'
-      },
-      schema: function (Joi) {
-        return {
-          username: Joi.string().alphanum().min(3).max(30).required(),
-          email: Joi.string().email()
-        };
-      },
-      methods: {
-        find: {
-          arguments: [function (Joi) {
-            return Joi.string().email();
-          }]
-        }
+  var User = new Oath('user', {
+    map: {
+      username: 'user_name'
+    },
+    schema: function (Joi) {
+      return {
+        username: Joi.string().alphanum().min(3).max(30).required(),
+        email: Joi.string().email()
+      };
+    },
+    methods: {
+      find: {
+        args: [function (Joi) {
+          return Joi.string().email();
+        }]
       }
     }
   }).fulfill(jsonFulfiller);

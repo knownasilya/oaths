@@ -1,6 +1,8 @@
 'use strict';
 
+var utils = require('utils');
 var Bluebird = require('bluebird');
+var Oath = require('../');
 
 function JSONFulfiller(options) {
   this.store = options.store;

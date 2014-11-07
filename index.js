@@ -1,17 +1,28 @@
 'use strict';
 
 var Joi = require('joi');
+var parky = require('parky');
 
-module.exports = Contract;
+module.exports = Oath;
 
-function Contract(contract) {
-  this.contracts = Object.keys(contract);
+function Oath(name, options) {
+  this.name = name;
+  this.mapOptions = options.map;
 }
 
-Contract.prototype.fulfill = function (fulfiller) {
-  if (!fulfiller) {
-    throw Error('Invalid fulfiller');
-  }
+Oath.prototype.find = function (id, callback) {
+  throw 'Not implemented';
+};
 
-  return fulfiller.bootstrap(this);
+Oath.prototype.update = function (id, data, callback) {
+  
+  throw 'Not implemented';
+};
+
+Oath.prototype.create = function (data, callback) {
+  throw 'Not implemented';
+};
+
+Oath.prototype.remove = function (id, callback) {
+  throw 'Not implemented';
 };
