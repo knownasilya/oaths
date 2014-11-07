@@ -2,7 +2,7 @@
   "name": "oaths",
   "version": "0.0.0",
   "description": "Don't make an oath if you can't fulfill it",
-  "main": "index.js",
+  "main": "lib",
   "scripts": {
     "test": "node test | tap-spec"
   },
@@ -16,7 +16,7 @@
   "dependencies": {
     "bluebird": "^2.3.10",
     "joi": "^4.7.0",
-    "parky": "^0.3.3"
+    "parky": "^0.4.0"
   },
   "devDependencies": {
     "tap-spec": "^1.0.1",

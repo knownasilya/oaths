@@ -1,17 +1,14 @@
 'use strict';
 
 var test = require('tape');
-var Oath = require('../');
-var JSONFulfiller = require('./json-fulfiller');
+var JSONOath = require('../lib/json-oath');
 var store = { users: [] };
-var jsonFulfiller = new JSONFulfiller({
-  store: store
-});
 
 test('init', function (t) {
   t.plan(4);
 
-  var User = new Oath('user', {
+  var User = new JSONOath('user', {
+    store: store.users,
     map: {
       username: 'user_name'
     },
@@ -28,18 +25,18 @@ test('init', function (t) {
         }]
       }
     }
-  }).fulfill(jsonFulfiller);
+  });
 
-  t.ok(contracts.user, 'has user contract');
-  t.ok(contracts.user.get, 'has user#get');
+  t.ok(User, 'has user contract');
+  t.ok(User.find, 'has user#find');
 
-  contracts.user.create({
+  User.create({
     username: 'bob',
     email: 'bob@gmail.com'
   }).then(function (data) {
     t.same(data, {
       id: 1,
-      username: 'bob',
+      user_name: 'bob',
       email: 'bob@gmail.com'
     });
 
